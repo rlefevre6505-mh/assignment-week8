@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "next": "16.1.4",
+    "pg": "^8.17.2",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
@@ -24,5 +25,13 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rlefevre6505-mh/assignment-week8.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rlefevre6505-mh/assignment-week8/issues"
+  },
+  "homepage": "https://github.com/rlefevre6505-mh/assignment-week8#readme"
 }

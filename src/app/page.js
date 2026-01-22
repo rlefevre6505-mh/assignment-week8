@@ -1,6 +1,9 @@
-import Image from "next/image";
+// static route
 
-export default function Home() {
-  //component to store username??
-  return <div></div>;
+export default function HomePage() {
+  return (
+    <>
+      <h1>Home Page</h1>
+    </>
+  );
 }
