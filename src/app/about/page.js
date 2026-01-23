@@ -1,6 +1,8 @@
+import styles from "./about.module.css";
+
 export default function AboutPage() {
   return (
-    <>
+    <div className={styles.text}>
       <h2>About GigBlog</h2>
 
       <p>
@@ -22,6 +24,6 @@ export default function AboutPage() {
 
       <p>Want to conrtibute to GigBlog?</p>
       <p>Let us know at contribute@gigblog.com</p>
-    </>
+    </div>
   );
 }

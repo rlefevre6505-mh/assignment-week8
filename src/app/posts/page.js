@@ -44,27 +44,28 @@ export default async function PostsPage({ searchParams }) {
   return (
     <>
       <h2>All Blog Posts</h2>
-      <br></br>
-      <div>
-        <Link
-          className="@apply ml-4 mb-2 text-var(--color-purple)"
-          href="/posts?sort=asc"
-        >
-          Sort By Title A-Z
-        </Link>
-        <br></br>
-        <Link className="@apply ml-4 mb-2" href="/posts?sort=desc">
-          Sort By Title Z-A
-        </Link>
-        <br></br>
-        <Link className="@apply ml-4 mb-2" href="/posts?sort=dateasc">
-          Sort By Newest
-        </Link>
-        <br></br>
-        <Link className="@apply ml-4 mb-2" href="/posts?sort=datedesc">
-          Sort By Oldest
-        </Link>
-        <br></br>
+
+      <div className={styles.linkblock}>
+        <div className={styles.links1}>
+          <Link
+            className="@apply ml-4 mb-2 text-var(--color-purple)"
+            href="/posts?sort=asc"
+          >
+            Sort By Title A-Z
+          </Link>
+          <Link className="@apply ml-4 mb-2" href="/posts?sort=desc">
+            Sort By Title Z-A
+          </Link>
+        </div>
+
+        <div className={styles.links2}>
+          <Link className="@apply ml-4 mb-2" href="/posts?sort=dateasc">
+            Sort By Newest
+          </Link>
+          <Link className="@apply ml-4 mb-2" href="/posts?sort=datedesc">
+            Sort By Oldest
+          </Link>
+        </div>
       </div>
       <div id="all-posts" className="@apply flex flex-col items-center">
         {data.map((post, i) => {
@@ -73,18 +74,15 @@ export default async function PostsPage({ searchParams }) {
           const dayString = post.date.toString().slice(8, 10);
           const dateString = `${yearString} - ${dayString} ${monthString}`;
           return (
-            <div key={`post${i}`} id="blog-post">
-              <h3 className="text-center">{post.title}</h3>
+            <div key={`post${i}`} className={styles.border}>
+              <h3 className="h3">{post.title}</h3>
               <p className="@apply text-40 text-center mb-4">
                 {post.location} - {dateString}
               </p>
               <p className="@apply text-40 text-center mb-4">{post.blurb}</p>
-              <p className="post-body">{post.blog_text}</p>
-              <Link
-                id="link"
-                className="styles.link"
-                href={`/posts/${post.id}`}
-              >
+              <p className={styles.postbody}>{post.blog_text}</p>
+
+              <Link className={styles.link} href={`/posts/${post.id}`}>
                 View full post & add/edit comments
               </Link>
             </div>

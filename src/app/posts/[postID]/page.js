@@ -5,6 +5,7 @@ import { db } from "@/utils/dbconnection.js";
 import { revalidatePath } from "next/cache";
 import DeleteButton from "@/components/DeleteButton";
 import EditButton from "@/components/EditButton";
+import styles from "./postID.module.css";
 
 // add delete (and edit) buttons to each comment
 
@@ -57,7 +58,7 @@ export default async function PostID({ params }) {
 
   return (
     <>
-      <div className="@apply flex flex-col">
+      <div className={styles.post}>
         <h3>{data.title}</h3>
         <p>
           {data.location} - {dateString}
@@ -65,10 +66,7 @@ export default async function PostID({ params }) {
         <p>{data.blurb}</p>
         <p>{data.blog_text}</p>
       </div>
-      <form
-        action={handleSubmit}
-        className="@apply flex flex-col items-center justify-center self-center"
-      >
+      <form action={handleSubmit} className={styles.form}>
         <h4>Add a comment:</h4>
         <label htmlFor="username">Your user name:</label>
         <input
@@ -97,25 +95,26 @@ export default async function PostID({ params }) {
         </button>
       </form>
       <div>
-        <p>Comments on this post:</p>
+        <p className="mb-4">Comments on this post:</p>
         {comments.map((comment, i) => {
           const yearString = comment.date.toString().slice(11, 15);
           const monthString = comment.date.toString().slice(4, 7);
           const dayString = comment.date.toString().slice(8, 10);
           const dateString = `${yearString} - ${dayString} ${monthString}`;
           return (
-            <div
-              className="@apply flex flex-col gap-4"
-              key={`post${postID}_comment${i}`}
-            >
-              <div className="@apply flex flex-row gap-4">
-                <p>{comment.username} </p>
-                <p> {dateString}</p>
+            <div className={styles.comment} key={`post${postID}_comment${i}`}>
+              <div className={styles.commentbody}>
+                <div className="@apply flex flex-row gap-4">
+                  <p>{comment.username} </p>
+                  <p> {dateString}</p>
+                </div>
+                <p>{comment.comment}</p>
+                <DeleteButton prop={comment.id}>Delete comment</DeleteButton>
               </div>
-              <p>{comment.comment}</p>
-              <DeleteButton prop={comment.id}>DELETE</DeleteButton>
-              <EditButton prop={comment.id}>EDIT</EditButton>
-              {/* <button onClick={handleDelete}>Delete Comment</button> */}
+
+              <div>
+                <EditButton prop={comment.id} />
+              </div>
             </div>
           );
         })}

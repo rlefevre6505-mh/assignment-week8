@@ -1,5 +1,6 @@
 import { db } from "../utils/dbconnection";
 import { revalidatePath } from "next/cache";
+import styles from "./EditButton.module.css";
 
 export default function EditButton({ prop }) {
   async function handleSubmit(rawFormData) {
@@ -20,7 +21,7 @@ export default function EditButton({ prop }) {
   }
 
   return (
-    <div className="box">
+    <div className={styles.box}>
       <form
         action={handleSubmit}
         className="@apply flex flex-col items-center justify-center self-center"
