@@ -3,7 +3,9 @@
 export default function HomePage() {
   return (
     <>
-      <h1>Home Page</h1>
+      <h2>Welcome to GigBlog</h2>
+
+      {/* insert images here */}
     </>
   );
 }

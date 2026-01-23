@@ -3,10 +3,9 @@
 
 import { db } from "@/utils/dbconnection.js";
 import { revalidatePath } from "next/cache";
+import DeleteButton from "@/components/DeleteButton";
+import EditButton from "@/components/EditButton";
 
-// individual post
-// comments submit form
-// render list of all comments
 // add delete (and edit) buttons to each comment
 
 export default async function PostID({ params }) {
@@ -23,12 +22,11 @@ export default async function PostID({ params }) {
   );
   const comments = commentQuery.rows;
 
-  const yearString = data.date.toString().slice(0, 4);
-  const monthString = data.date.toString().slice(5, 7);
+  const yearString = data.date.toString().slice(11, 15);
+  const monthString = data.date.toString().slice(4, 7);
   const dayString = data.date.toString().slice(8, 10);
-  const dateString = `${dayString} - ${monthString} - ${yearString}`;
+  const dateString = `${yearString} - ${dayString} ${monthString}`;
 
-  // capture current date for submission
   const today = new Date();
 
   async function handleSubmit(rawFormData) {
@@ -59,7 +57,7 @@ export default async function PostID({ params }) {
 
   return (
     <>
-      <div>
+      <div className="@apply flex flex-col">
         <h3>{data.title}</h3>
         <p>
           {data.location} - {dateString}
@@ -71,6 +69,7 @@ export default async function PostID({ params }) {
         action={handleSubmit}
         className="@apply flex flex-col items-center justify-center self-center"
       >
+        <h4>Add a comment:</h4>
         <label htmlFor="username">Your user name:</label>
         <input
           className="px-2 py-1 border-2 border-solid border-[#00000070] rounded-lg"
@@ -90,28 +89,33 @@ export default async function PostID({ params }) {
         <label htmlFor="date"></label>
         <input disabled type="hidden" name="date" value={today}></input>
         <button
-          className="my-button m-8 p-2 border-2 border-solid border-[#ffbb00] rounded-lg"
+          className="my-button m-8 p-2 border-2 border-solid border-[#00000070] rounded-lg"
           type="submit"
         >
           {" "}
           Submit
         </button>
       </form>
-
       <div>
         <p>Comments on this post:</p>
         {comments.map((comment, i) => {
-          const yearString = comment.date.toString().slice(0, 4);
-          const monthString = comment.date.toString().slice(5, 7);
+          const yearString = comment.date.toString().slice(11, 15);
+          const monthString = comment.date.toString().slice(4, 7);
           const dayString = comment.date.toString().slice(8, 10);
-          const dateString = `${dayString} / ${monthString} / ${yearString}`;
+          const dateString = `${yearString} - ${dayString} ${monthString}`;
           return (
-            <div key={`post${postID}_comment${i}`}>
-              <div>
+            <div
+              className="@apply flex flex-col gap-4"
+              key={`post${postID}_comment${i}`}
+            >
+              <div className="@apply flex flex-row gap-4">
                 <p>{comment.username} </p>
                 <p> {dateString}</p>
               </div>
               <p>{comment.comment}</p>
+              <DeleteButton prop={comment.id}>DELETE</DeleteButton>
+              <EditButton prop={comment.id}>EDIT</EditButton>
+              {/* <button onClick={handleDelete}>Delete Comment</button> */}
             </div>
           );
         })}

@@ -1,13 +1,82 @@
 @import "tailwindcss";
 
 :root {
-  /* --background: #ffffff;
-  --foreground: #171717; */
+  --color-text: rgb(252, 252, 252);
+  --color-bg: rgb(40, 40, 40);
+  --color-purple: rgb(175, 0, 190);
+}
+
+* {
+  /* margin: 2rem; */
+  h3 {
+    font-size: 3.2rem;
+  }
+
+  p {
+    max-width: 80vw;
+  }
+
+  .box {
+    border: 2px solid black;
+    border-radius: 0.8rem;
+    max-width: 80vw;
+  }
+  font-family: var(--font-quicksand);
+  /* .header
+  .footer {
+    background-color: var(--color-bg);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  } */
+  .link {
+    font-family: var(--font-teko);
+    font-size: 1.6rem;
+    background-color: black;
+    padding: 0 16px 0 16px;
+    border: 1px solid var(--color-purple);
+    border-radius: 8px;
+  }
+
+  .link:hover {
+    cursor: pointer;
+    color: var(--color-purple);
+  }
+
+  .post-body {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
+  }
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin-bottom: 6rem;
+  position: relative;
+}
+
+h1 {
+  text-align: center;
+  font-size: 4.8rem;
+  color: var(--color-purple);
+  font-family: var(--font-teko);
+}
+
+h2 {
+  margin: 4rem;
+  font-size: 2rem;
+  text-align: center;
 }
 
 /* use tailwind for specific items */
 
-/* use css modules formindividual pages */
+/* use css modules for individual pages */
 
 /* modules can be stored together with their page/component or in a seperate styles folder (inside src folder) */
 
