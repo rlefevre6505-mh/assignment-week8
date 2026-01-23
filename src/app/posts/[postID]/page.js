@@ -17,6 +17,12 @@ export default async function PostID({ params }) {
   ]);
   const data = query.rows[0];
 
+  const commentQuery = await db.query(
+    `SELECT * FROM blog_comments WHERE post_id = $1`,
+    [postID],
+  );
+  const comments = commentQuery.rows;
+
   const yearString = data.date.toString().slice(0, 4);
   const monthString = data.date.toString().slice(5, 7);
   const dayString = data.date.toString().slice(8, 10);
@@ -33,7 +39,6 @@ export default async function PostID({ params }) {
       date: today,
       post_id: data.id,
     };
-
     try {
       db.query(
         `INSERT INTO blog_comments (username, comment, date, post_id) VALUES ($1, $2, $3, $4)
@@ -92,6 +97,25 @@ export default async function PostID({ params }) {
           Submit
         </button>
       </form>
+
+      <div>
+        <p>Comments on this post:</p>
+        {comments.map((comment, i) => {
+          const yearString = comment.date.toString().slice(0, 4);
+          const monthString = comment.date.toString().slice(5, 7);
+          const dayString = comment.date.toString().slice(8, 10);
+          const dateString = `${dayString} / ${monthString} / ${yearString}`;
+          return (
+            <div key={`post${postID}_comment${i}`}>
+              <div>
+                <p>{comment.username} </p>
+                <p> {dateString}</p>
+              </div>
+              <p>{comment.comment}</p>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }

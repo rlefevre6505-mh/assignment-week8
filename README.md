@@ -1,6 +1,6 @@
 # A blog with comments (post, edit and delete options)
 
-# component to store username????
+# remember to do metadata if possible
 
 # in vercel you can add env's after deployment by going to settings
 
@@ -9,8 +9,6 @@
 # share domain, not app link
 
 # you can edit your domain name!!! (keep .vercel.app)
-
-# remember to do metadata if possible
 
 ## User Stories
 
