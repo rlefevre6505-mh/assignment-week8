@@ -7,7 +7,6 @@
 }
 
 * {
-  /* margin: 2rem; */
   h3 {
     font-size: 3.2rem;
   }
@@ -78,3 +77,22 @@ h2 {
 /* modules can be stored together with their page/component or in a seperate styles folder (inside src folder) */
 
 /* media queries go in global */
+
+@media (width < 600px) {
+  * {
+    .link {
+      font-size: 1.2rem;
+    }
+    .image {
+      margin-top: 2rem;
+    }
+  }
+}
+
+@media (width < 400px) {
+  * {
+    .image {
+      margin-top: 4rem;
+    }
+  }
+}

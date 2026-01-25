@@ -40,7 +40,7 @@ export default async function PostID({ params }) {
     };
     try {
       db.query(
-        `INSERT INTO blog_comments (username, comment, date, post_id) VALUES ($1, $2, $3, $4)
+        `INSERT INTO blog_comments (username, comment, date, post_id) VALUES ($1, $2, $3, $4) RETURNING *
     `,
         [
           formValues.username,
