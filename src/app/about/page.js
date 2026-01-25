@@ -22,7 +22,7 @@ export default function AboutPage() {
         view comments relatign to it and even leave your own.
       </p>
 
-      <p>Want to conrtibute to GigBlog?</p>
+      <p>Want to contribute to GigBlog?</p>
       <p>Let us know at contribute@gigblog.com</p>
     </div>
   );

@@ -1,11 +1,17 @@
 import { db } from "../utils/dbconnection";
+import { revalidatePath } from "next/cache";
 
 export default function DeleteButton({ prop }) {
   async function handleDelete() {
     "use server";
-    const query = await db.query(`DELETE FROM blog_comments WHERE id = $1`, [
-      prop,
-    ]);
+    try {
+      const query = await db.query(`DELETE FROM blog_comments WHERE id = $1`, [
+        prop,
+      ]);
+    } catch (error) {
+      console.error(error);
+    }
+    revalidatePath("/postID");
   }
 
   return (

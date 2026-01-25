@@ -12,6 +12,7 @@
   flex-direction: row;
   gap: 1rem;
   align-items: center;
+  justify-content: space-between;
   border: black 2px solid;
   border-radius: 16px;
   max-width: 90vw;
@@ -24,6 +25,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  flex-grow: 1;
 }
 
 .form {

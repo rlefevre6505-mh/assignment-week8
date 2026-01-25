@@ -13,7 +13,6 @@ export default function EditButton({ prop }) {
         `UPDATE blog_comments SET comment='${formValues.comment}' WHERE id = $1`,
         [prop],
       );
-      console.log(formValues);
     } catch (error) {
       console.error(error);
     }

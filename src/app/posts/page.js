@@ -11,17 +11,6 @@ export default async function PostsPage({ searchParams }) {
   //get params
   const queryString = await searchParams;
 
-  //attempt at sorting by date:
-  // if (queryString.sort === "desc") {
-  //   data.sort((a, b) => {
-  //     b.date.getTime() - a.date.getTime();
-  //   });
-  // } else if (queryString.sort === "asc") {
-  //   data.sort((a, b) => {
-  //     a.date.getTime() - b.date.getTime();
-  //   });
-  // }
-
   //sorting by title:
   if (queryString.sort === "desc") {
     data.sort((a, b) => {
